@@ -8,12 +8,13 @@ services:
       - ./.ssh/id_rsa:/var/jenkins_home/.ssh/id_rsa
     ports:
       - 8080:8080
-      - 50000:50000
     links:
      - slave01
 
   slave01:
     container_name: slave01
-    image: jenkinsci/ssh-slave
+    build: ./slave
+    volumes:
+      - ./slave/workspace:/home/jenkins/workspace
     environment:
       - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}

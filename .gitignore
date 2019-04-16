@@ -1,3 +1,4 @@
 .env
 /jenkins_home/
 /.ssh/
+/slave/workspace/
