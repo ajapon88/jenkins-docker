@@ -14,7 +14,5 @@ services:
   slave01:
     container_name: slave01
     build: ./slave
-    volumes:
-      - ./slave/workspace:/home/jenkins/workspace
     environment:
       - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}
