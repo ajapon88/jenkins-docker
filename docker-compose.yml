@@ -21,9 +21,8 @@ services:
     environment:
       - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}
 
+  # tcp://docker-host:2375
   docker-host:
     container_name: docker-host
     image: docker:dind
     privileged: true
-    ports:
-      - 2375:2375
