@@ -12,6 +12,8 @@ services:
     links:
      - slave01
      - docker-host
+    environment:
+     - JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
   slave01:
     container_name: slave01
