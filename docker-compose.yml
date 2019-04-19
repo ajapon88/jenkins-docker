@@ -5,7 +5,6 @@ services:
     build: .
     volumes:
       - ./jenkins_home:/var/jenkins_home
-      - ./.ssh/id_rsa:/var/jenkins_home/.ssh/id_rsa
       # - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 8080:8080
