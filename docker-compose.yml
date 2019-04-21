@@ -9,14 +9,14 @@ services:
     ports:
       - 8080:8080
     links:
-     - slave01
+     - rbenv-slave
      - docker-host
     environment:
      - JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
-  slave01:
-    container_name: slave01
-    build: ./slave
+  rbenv-slave:
+    container_name: rbenv-slave
+    build: ./rbenv-slave
     environment:
       - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}
 
