@@ -21,9 +21,4 @@ RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh
 RUN chgrp -R jenkins "${RBENV_ROOT}"
 RUN chmod -R g+rwxXs "${RBENV_ROOT}"
 
-USER jenkins
-
-ADD ./ruby-versions.txt /tmp/ruby-versions.txt
-RUN ["/bin/bash", "-l", "-e", "-c", "xargs -L 1 rbenv install < /tmp/ruby-versions.txt"]
-
-USER root
+VOLUME "${RBENV_ROOT}/versions"

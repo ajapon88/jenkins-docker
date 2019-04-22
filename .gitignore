@@ -1,4 +1,4 @@
 .env
 /jenkins_home/
 /.ssh/
-/slave/workspace/
+/rbenv-slave/rbenv/
