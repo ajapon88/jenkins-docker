@@ -18,7 +18,7 @@ services:
     container_name: rbenv-slave
     build: ./rbenv-slave
     volumes:
-      - ./rbenv-slave/rbenv/versions:/usr/local/rbenv/versions
+      - ./.rbenv/versions:/opt/rbenv/versions
     environment:
       - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}
 
@@ -26,4 +26,6 @@ services:
   docker-host:
     container_name: docker-host
     image: docker:dind
+    volumes:
+      - ./.docker:/var/lib/docker
     privileged: true

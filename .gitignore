@@ -1,4 +1,5 @@
 .env
 /jenkins_home/
 /.ssh/
-/rbenv-slave/rbenv/
+/.docker/
+/.rbenv/
