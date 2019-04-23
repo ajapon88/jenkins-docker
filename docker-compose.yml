@@ -1,4 +1,5 @@
 version: '3'
+
 services:
   jenkins:
     container_name: master
@@ -18,7 +19,7 @@ services:
     container_name: rbenv-slave
     build: ./rbenv-slave
     volumes:
-      - ./.rbenv/versions:/opt/rbenv/versions
+      - rbenv:/opt/rbenv
     environment:
       - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}
 
@@ -29,3 +30,7 @@ services:
     volumes:
       - ./.docker:/var/lib/docker
     privileged: true
+
+volumes:
+  rbenv:
+    driver: local
