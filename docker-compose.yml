@@ -15,24 +15,26 @@ services:
     environment:
       - JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
-  rbenv-slave:
-    container_name: rbenv-slave
-    build: ./rbenv-slave
-    volumes:
-      - rbenv:/opt/rbenv
-    environment:
-      - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}
-
   # tcp://docker-host:2375
   docker-host:
     container_name: docker-host
-    image: docker:dind
+    build: ./docker-host
+    privileged: true
     volumes:
       - docker:/var/lib/docker
-    privileged: true
+    links:
+      - docker-registry
+
+  docker-registry:
+    container_name: docker-registry
+    image: registry
+    volumes:
+      - registry:/var/lib/registry 
+    ports:
+      - 5000:5000
 
 volumes:
-  rbenv:
-    driver: local
   docker:
+    driver: local
+  registry:
     driver: local
