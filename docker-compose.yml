@@ -24,10 +24,8 @@ services:
   # tcp://docker-host:2375
   docker-host:
     container_name: docker-host
-    build:
-      context: ./docker-host
-      args:
-        - DOCKER_REGISTRY_HOST=docker-registry:5000
+    image: docker:dind
+    command: --insecure-registry docker-registry:5000
     privileged: true
     volumes:
       - docker:/var/lib/docker
