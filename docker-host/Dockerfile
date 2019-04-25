@@ -1,5 +1,7 @@
 FROM docker:dind
 
-ENV DOCKER_REGISTRY_HOST=docker-registry:5000
+ARG DOCKER_REGISTRY_HOST
 RUN mkdir -p /etc/docker
-RUN echo "{ \"insecure-registries\" : [\"${DOCKER_REGISTRY_HOST}\"] }" > /etc/docker/daemon.json
+RUN echo -e "{\n\
+    \"insecure-registries\" : [\"${DOCKER_REGISTRY_HOST}\"]\n\
+}" > /etc/docker/daemon.json
