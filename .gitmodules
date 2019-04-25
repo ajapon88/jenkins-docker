@@ -1,3 +1,0 @@
-[submodule "rbenv-slave"]
-	path = rbenv-slave
-	url = https://github.com/ajapon88/jenkins-rbenv-slave-docker.git
