@@ -10,13 +10,13 @@ services:
     ports:
       - 8080:8080
     links:
-      - slave01
+      - slave
       - docker-host
     environment:
       - JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
-  slave01:
-    container_name: slave01
+  slave:
+    container_name: slave
     image: jenkinsci/ssh-slave
     environment:
       - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}
@@ -24,7 +24,7 @@ services:
   # tcp://docker-host:2375
   docker-host:
     container_name: docker-host
-    image: docker:dind
+    image: docker:18.09.9-dind
     command: --insecure-registry docker-registry:5000
     privileged: true
     volumes:
@@ -36,9 +36,7 @@ services:
     container_name: docker-registry
     image: registry
     volumes:
-      - registry:/var/lib/registry 
-    ports:
-      - 5000:5000
+      - registry:/var/lib/registry
 
 volumes:
   docker:
