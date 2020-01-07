@@ -12,8 +12,6 @@ services:
     links:
       - slave
       - docker-host
-    environment:
-      - JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
   # Jenkins slave settings
   #   Host Key Verification Strategy: Non verifying Vertification Strategy
