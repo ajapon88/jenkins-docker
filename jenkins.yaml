@@ -1,11 +1,42 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - basicSSHUserPrivateKey:
+          id: "8bc54097-d56f-4587-8042-e00dd26509c8"
+          privateKeySource:
+            directEntry:
+              privateKey: "{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}"
+          scope: GLOBAL
+          username: "jenkins"
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
   - "Ping"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
   disableRememberMe: false
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
+  nodes:
+  - permanent:
+      launcher:
+        ssh:
+          credentialsId: "8bc54097-d56f-4587-8042-e00dd26509c8"
+          host: "slave"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "slave"
+      nodeProperties:
+      - envVars:
+          env:
+          - key: "JAVA_HOME"
+            value: "/usr/local/openjdk-8"
+      numExecutors: 1
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
   numExecutors: 2
   primaryView:
     all:
