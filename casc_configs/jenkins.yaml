@@ -33,6 +33,16 @@ jenkins:
         pullStrategy: PULL_ALWAYS
         pullTimeout: 300
         remoteFs: "/home/jenkins"
+      - connector:
+          attach:
+            user: "jenkins"
+        dockerTemplateBase:
+          image: "docker-registry:5000/ajapon88/jenkins-rbenv-slave:latest"
+        labelString: "docker-rbenv-slave"
+        name: "docker-rbenv-slave"
+        pullStrategy: PULL_ALWAYS
+        pullTimeout: 300
+        remoteFs: "/home/jenkins"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
