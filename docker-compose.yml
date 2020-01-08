@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 
 services:
   jenkins:
@@ -12,6 +12,8 @@ services:
     links:
       - slave
       - docker-host
+    secrets:
+      - jenkins_slave_ssh_private_key
 
   # Jenkins slave settings
   #   Host Key Verification Strategy: Non verifying Vertification Strategy
@@ -47,3 +49,7 @@ volumes:
     driver: local
   registry:
     driver: local
+
+secrets:
+  jenkins_slave_ssh_private_key:
+    file: .ssh/id_rsa
