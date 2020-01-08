@@ -3,7 +3,7 @@ version: '3.3'
 services:
   jenkins:
     container_name: master
-    build: .
+    build: ./master
     volumes:
       - ./jenkins_home:/var/jenkins_home
       - ./casc_configs:/var/jenkins_conf
@@ -36,8 +36,6 @@ services:
     privileged: true
     volumes:
       - docker:/var/lib/docker
-    ports:
-      - 5000:5000
     links:
       - docker-registry
 
@@ -46,6 +44,8 @@ services:
     image: registry
     volumes:
       - registry:/var/lib/registry
+    ports:
+      - 5000:5000
 
 volumes:
   docker:
