@@ -14,6 +14,25 @@ jenkins:
   agentProtocols:
   - "JNLP4-connect"
   - "Ping"
+  clouds:
+  - docker:
+      dockerApi:
+        connectTimeout: 60
+        dockerHost:
+          uri: "tcp://docker-host:2375"
+        readTimeout: 60
+      name: "docker"
+      templates:
+      - connector:
+          attach:
+            user: "jenkins"
+        dockerTemplateBase:
+          image: "jenkinsci/slave:latest"
+        labelString: "docker-slave"
+        name: "docker-slave"
+        pullStrategy: PULL_ALWAYS
+        pullTimeout: 300
+        remoteFs: "/home/jenkins"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
