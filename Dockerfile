@@ -21,8 +21,4 @@ USER jenkins
 COPY ./plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
-# Configuration as Code
-ENV CASC_JENKINS_CONFIG /usr/share/jenkins/ref/jenkins.yaml
-COPY ./jenkins.yaml $CASC_JENKINS_CONFIG
-
 ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false -Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Tokyo"
