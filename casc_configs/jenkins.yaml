@@ -53,12 +53,23 @@ jenkins:
   nodes:
   - permanent:
       launcher:
+        jnlp:
+          workDirSettings:
+            disabled: false
+            failIfWorkDirIsMissing: false
+            internalDir: "remoting"
+      name: "jnlp-slave"
+      numExecutors: 1
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
+  - permanent:
+      launcher:
         ssh:
           credentialsId: "8bc54097-d56f-4587-8042-e00dd26509c8"
-          host: "slave"
+          host: "ssh-slave"
           port: 22
           sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
-      name: "slave"
+      name: "ssh-slave"
       nodeProperties:
       - envVars:
           env:

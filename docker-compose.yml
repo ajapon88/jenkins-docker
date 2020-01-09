@@ -10,9 +10,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock # set env COMPOSE_CONVERT_WINDOWS_PATHS=1 for windows
     ports:
       - 8080:8080
-    links:
-      - slave
-      - docker-host
     secrets:
       - jenkins_slave_ssh_private_key
     environment:
@@ -22,11 +19,20 @@ services:
   #   Host Key Verification Strategy: Non verifying Vertification Strategy
   #   Environment:
   #     JAVA_HOME: /usr/local/openjdk-8
-  slave:
-    container_name: slave
+  ssh-slave:
+    container_name: ssh-slave
     image: jenkinsci/ssh-slave:v1.0.0
     environment:
       - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}
+
+  jnlp-slave:
+    container_name: jnlp-slave
+    image: jenkinsci/jnlp-slave:3.36-2
+    restart: always
+    environment:
+      - JENKINS_URL=http://master:8080
+      - JENKINS_AGENT_NAME=jnlp-slave
+      - JENKINS_SECRET=${JENKINS_SLAVE_JNLP_SECRET} # from slave-agent.jnlp
 
   # tcp://docker-host:2375
   docker-host:
