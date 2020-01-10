@@ -1,7 +1,7 @@
 version: '3.3'
 
 services:
-  jenkins:
+  master:
     container_name: master
     build: ./master
     volumes:
@@ -14,6 +14,7 @@ services:
       - jenkins_slave_ssh_private_key
     environment:
       - CASC_JENKINS_CONFIG=/var/jenkins_conf
+      - SLAVE_AGENT_PORT=${SLAVE_AGENT_PORT}
 
   # Jenkins slave settings
   #   Host Key Verification Strategy: Non verifying Vertification Strategy
@@ -22,13 +23,19 @@ services:
   ssh-slave:
     container_name: ssh-slave
     image: jenkinsci/ssh-slave:v1.0.0
+    depends_on:
+      - master
     environment:
       - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}
 
   jnlp-slave:
     container_name: jnlp-slave
     image: jenkinsci/jnlp-slave:3.36-2
-    restart: always
+    depends_on:
+      - master
+    volumes:
+      - ./wait-for-it:/wait-for-it
+    entrypoint: /wait-for-it/wait-for-it.sh -t 0 master:${SLAVE_AGENT_PORT} -- jenkins-agent
     environment:
       - JENKINS_URL=http://master:8080
       - JENKINS_AGENT_NAME=jnlp-slave
