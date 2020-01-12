@@ -41,6 +41,16 @@ services:
       - JENKINS_AGENT_NAME=jnlp-slave
       - JENKINS_SECRET=${JENKINS_SLAVE_JNLP_SECRET} # from slave-agent.jnlp
 
+  docker-host-slave:
+    container_name: docker-host-slave
+    build: ./docker-host-slave
+    depends_on:
+      - master
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock # set env COMPOSE_CONVERT_WINDOWS_PATHS=1 for windows
+    environment:
+      - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}
+
   # tcp://docker-host:2375
   docker-host:
     container_name: docker-host
