@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+import os
+import subprocess
+import json
+
+jenkins_host = os.environ.get('JENKINS_HOST', 'localhost:8080')
+response = subprocess.check_output(
+    ["curl", "-sSL", f"http://{jenkins_host}/pluginManager/api/json?depth=2"])
+
+plugins = json.loads(response)['plugins']
+dependencies_plugins = [plugin for plugin in sum(
+    [plugin['dependencies'] for plugin in plugins], []) if not plugin['optional']]
+# どのプラグインにも依存されていないもの
+install_plugins = [plugin for plugin in plugins if all(
+    plugin['shortName'] != dependency['shortName'] for dependency in dependencies_plugins)]
+
+for plugin in sorted(map(lambda plugin: "%s:%s" % (plugin['shortName'], plugin['version']), install_plugins)):
+    print(plugin)
