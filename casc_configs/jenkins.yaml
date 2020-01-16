@@ -4,7 +4,7 @@ credentials:
     - credentials:
       - basicSSHUserPrivateKey:
           description: "slave接続用private key"
-          id: "8bc54097-d56f-4587-8042-e00dd26509c8"
+          id: "jenkins_slave_ssh_private_key"
           privateKeySource:
             directEntry:
               privateKey: ${jenkins_slave_ssh_private_key}
@@ -54,7 +54,7 @@ jenkins:
   - permanent:
       launcher:
         ssh:
-          credentialsId: "8bc54097-d56f-4587-8042-e00dd26509c8"
+          credentialsId: "jenkins_slave_ssh_private_key"
           host: "docker-host-slave"
           port: 22
           sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
@@ -81,7 +81,7 @@ jenkins:
   - permanent:
       launcher:
         ssh:
-          credentialsId: "8bc54097-d56f-4587-8042-e00dd26509c8"
+          credentialsId: "jenkins_slave_ssh_private_key"
           host: "ssh-slave"
           port: 22
           sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
