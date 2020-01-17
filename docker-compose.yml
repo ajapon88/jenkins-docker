@@ -25,8 +25,8 @@ services:
     image: jenkinsci/ssh-slave:v1.0.0
     depends_on:
       - master
-    environment:
-      - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}
+    env_file:
+      - ssh-slave.env
 
   jnlp-slave:
     container_name: jnlp-slave
@@ -36,10 +36,11 @@ services:
     volumes:
       - ./wait-for-it:/wait-for-it
     entrypoint: /wait-for-it/wait-for-it.sh -t 0 master:${SLAVE_AGENT_PORT} -- jenkins-agent
+    env_file:
+      - jnlp-slave.env
     environment:
       - JENKINS_URL=http://master:8080
       - JENKINS_AGENT_NAME=jnlp-slave
-      - JENKINS_SECRET=${JENKINS_SLAVE_JNLP_SECRET} # from slave-agent.jnlp
 
   docker-host-slave:
     container_name: docker-host-slave
@@ -48,8 +49,8 @@ services:
       - master
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock # set env COMPOSE_CONVERT_WINDOWS_PATHS=1 for windows
-    environment:
-      - JENKINS_SLAVE_SSH_PUBKEY=${JENKINS_SLAVE_SSH_PUBKEY}
+    env_file:
+      - ssh-slave.env
 
   # tcp://docker-host:2375
   docker-host:
