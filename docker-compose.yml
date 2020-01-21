@@ -13,7 +13,8 @@ services:
     secrets:
       - jenkins_slave_ssh_private_key
     environment:
-      - JAVA_OPS=-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Tokyo
+      - TZ=${TIME_ZONE}
+      - JAVA_OPTS=-Dorg.apache.commons.jelly.tags.fmt.timeZone=${TIME_ZONE}
       - CASC_JENKINS_CONFIG=/var/jenkins_conf
       - SLAVE_AGENT_PORT=${SLAVE_AGENT_PORT}
 

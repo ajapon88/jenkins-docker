@@ -136,7 +136,7 @@ unclassified:
   buildTimestamp:
     enableBuildTimestamp: true
     pattern: "yyyy-MM-dd HH:mm:ss z"
-    timezone: "Etc/UTC"
+    timezone: ${TIME_ZONE}
   defaultFolderConfiguration:
     healthMetrics:
     - worstChildHealthMetric:
