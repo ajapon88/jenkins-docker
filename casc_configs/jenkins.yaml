@@ -155,6 +155,7 @@ unclassified:
       $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
 
       Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
     defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
     maxAttachmentSize: -1
     maxAttachmentSizeMb: 0
@@ -169,6 +170,7 @@ unclassified:
     useExistingAccountWithSameEmail: false
   location:
     adminAddress: "まだアドレスが設定されていません。 <nobody@nowhere>"
+    url: "http://localhost:8080/"
   mailer:
     charset: "UTF-8"
     useSsl: false
