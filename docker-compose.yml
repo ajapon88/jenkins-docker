@@ -54,6 +54,18 @@ services:
     env_file:
       - ssh-slave.env
 
+  swarm-slave:
+    container_name: swarm-slave
+    build: ./swarm-slave
+    depends_on:
+      - master
+    volumes:
+      - ./wait-for-it:/wait-for-it
+    entrypoint: /wait-for-it/wait-for-it.sh -t 0 master:${SLAVE_AGENT_PORT} -- /entrypoint.sh
+    environment:
+      - JENKINS_URL=http://master:8080
+      - JENKINS_AGENT_NAME=swarm-slave
+
   # tcp://docker-host:2375
   docker-host:
     container_name: docker-host
