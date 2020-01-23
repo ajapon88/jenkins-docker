@@ -4,9 +4,9 @@ import os
 import subprocess
 import json
 
-jenkins_host = os.environ.get('JENKINS_HOST', 'localhost:8080')
+jenkins_url = os.environ.get('JENKINS_URL', 'http://localhost:8080')
 response = subprocess.check_output(
-    ["curl", "-sSL", f"http://{jenkins_host}/pluginManager/api/json?depth=2"])
+    ["curl", "--fail", "-sSL", f"{jenkins_url}/pluginManager/api/json?depth=2"])
 
 plugins = json.loads(response)['plugins']
 dependencies_plugins = [plugin for plugin in sum(
