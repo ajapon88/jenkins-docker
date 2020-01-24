@@ -1,2 +1,5 @@
-/plugins.txt eol=lf
 *.sh eol=lf
+*.yml eol=lf
+*.yaml eol=lf
+Dockerfile eol=lf
+master/plugins.txt eol=lf
