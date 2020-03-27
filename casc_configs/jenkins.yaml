@@ -131,12 +131,14 @@ unclassified:
         manageHooks: false
         repositoriesCacheDuration: 0
         teamCacheDuration: 0
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
   buildStepOperation:
     enabled: false
   buildTimestamp:
     enableBuildTimestamp: true
     pattern: "yyyy-MM-dd HH:mm:ss z"
-    timezone: ${TIME_ZONE}
   defaultFolderConfiguration:
     healthMetrics:
     - worstChildHealthMetric:
@@ -162,6 +164,8 @@ unclassified:
     precedenceBulk: false
     useSsl: false
     watchingEnabled: false
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
     hookUrl: "http://localhost:8080/github-webhook/"
   gitSCM:
