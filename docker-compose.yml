@@ -33,7 +33,7 @@ services:
 
   jnlp-slave:
     container_name: jnlp-slave
-    image: jenkinsci/jnlp-slave:3.36-2
+    image: jenkinsci/jnlp-slave:4.0.1-1
     depends_on:
       - master
     volumes:
